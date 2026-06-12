@@ -1,0 +1,88 @@
+{
+  "name": "monday & thursday",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 14
+            },
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                0,
+                4
+              ],
+              "triggerAtHour": 14
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "091ce4ea-2b77-4493-a855-2ea3df5483ea",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "5418896669",
+        "text": "تذكير بصيام اليوم ,   تقبل الله منا ومنكم صالح الأعمال",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "468cb5c3-0b19-48a3-a4ae-59e917175577",
+      "name": "Send a text message",
+      "webhookId": "ae1281bc-361b-4fb5-812c-623b9bdfce34",
+      "credentials": {
+        "telegramApi": {
+          "id": "C27pVWLF2anUjmgf",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "18cc3ac9-fd9f-4c74-ac5d-263b1aac05d2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "388ecd9921dd5ea96065dc14c8d847c44cd82af20566141c41fef658e262b23a"
+  },
+  "nodeGroups": [],
+  "id": "OiDtaluXbnauKdP9",
+  "tags": []
+}

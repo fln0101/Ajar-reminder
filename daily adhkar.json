@@ -1,0 +1,101 @@
+{
+  "name": "daily adhkar",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "242dc225-d735-4b34-80ed-95a0128fea81",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "const adhkar = [\n  \"سبحان الله\",\n  \"الحمد لله\",\n  \"الله أكبر\",\n  \"لا إله إلا الله\",\n  \"استغفر الله\",\n  \"لا حول ولا قوة إلا بالله\",\n  \"سبحان الله وبحمده\",\n  \"سبحان الله العظيم\",\n  \"اللهم صل وسلم على نبينا محمد\",\n  \"أستغفر الله وأتوب إليه\"\n];\n\nconst randomDhikr = adhkar[Math.floor(Math.random() * adhkar.length)];\n\nreturn [\n  {\n    json: {\n      text: randomDhikr\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "354160d7-908e-4683-99cf-49e39ea9a48b",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "chatId": "5418896669",
+        "text": "={{$json.text}}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "9403e3d6-7ec5-4818-8f29-982e3a881a5b",
+      "name": "Send a text message",
+      "webhookId": "97ac9772-efdc-4593-9f5c-61c866491c0e",
+      "credentials": {
+        "telegramApi": {
+          "id": "C27pVWLF2anUjmgf",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "8ffac3a9-624f-4136-a20b-f3c4df239aad",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "388ecd9921dd5ea96065dc14c8d847c44cd82af20566141c41fef658e262b23a"
+  },
+  "nodeGroups": [],
+  "id": "H0vH5xtivxnu5ayp",
+  "tags": []
+}

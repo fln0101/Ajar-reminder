@@ -1,0 +1,98 @@
+{
+  "name": "ehsan",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8e1e3e30-25e6-4b1e-847b-23db9c0c4932",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "const donations = [\n`تذكير بالصدقة\n\nالوقف\n\nhttps://ehsan.sa/waqf`,\n\n`تذكير بالصدقة\n\nتيسرت\n\nhttps://ehsan.sa/tyassarat/judicialbills`,\n\n`تذكير بالصدقة\n\nفرجت\n\nhttps://ehsan.sa/forijat`,\n\n`تذكير بالصدقة\n\nالأيتام\n\nhttps://ehsan.sa/Orphans`,\n\n`تذكير بالصدقة\n\nالمشاريع\n\nhttps://ehsan.sa/projects`\n];\n\nconst randomDonation =\ndonations[Math.floor(Math.random() * donations.length)];\n\nreturn [\n{\njson: {\ntext: randomDonation\n}\n}\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e6adf00f-8274-4faf-8a31-866e0ac93b08",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "chatId": "5418896669",
+        "text": "={{$json.text}}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "aa49a399-73c8-468b-b893-8ec2a4216068",
+      "name": "Send a text message",
+      "webhookId": "ad1823ed-25a3-4774-a15c-baf97afdcd0d",
+      "credentials": {
+        "telegramApi": {
+          "id": "C27pVWLF2anUjmgf",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "2bea8e18-7694-461c-b09c-b10fe0d68e24",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "388ecd9921dd5ea96065dc14c8d847c44cd82af20566141c41fef658e262b23a"
+  },
+  "nodeGroups": [],
+  "id": "ML16tSc2OKBIBCGi",
+  "tags": []
+}
